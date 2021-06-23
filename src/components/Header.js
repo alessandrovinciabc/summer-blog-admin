@@ -4,6 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
 function Header(props) {
+  let { auth } = props;
   return (
     <Navbar className={props.className + ''} variant="light" expand="md">
       <Navbar.Brand href="#/home">
@@ -18,6 +19,15 @@ function Header(props) {
           <Nav.Link className="px-3" href="#/about">
             About
           </Nav.Link>
+          {auth ? (
+            <Nav.Link className="px-3 bg-danger rounded" href="#/logout">
+              <span className="text-white">Logout</span>
+            </Nav.Link>
+          ) : (
+            <Nav.Link className="px-3" href="#/login">
+              Login
+            </Nav.Link>
+          )}
         </Nav>
       </Navbar.Collapse>
     </Navbar>

@@ -42,12 +42,22 @@ function App() {
 
   return (
     <HashRouter>
-      <Header className="bg-header" />
+      <Header className="bg-header" auth={auth} />
       <Switch>
         <Route path="/login" exact>
           {auth && <Redirect to="/" />}
           <LoginView setAuth={setAuth} loading={loading} />
         </Route>
+        <Route
+          path="/logout"
+          exact
+          render={() => {
+            jwt.remove();
+            setAuth(null);
+
+            return <Redirect to="/" />;
+          }}
+        />
         {auth == null && <Redirect to="/login" />}
 
         <Route path="/" exact>
