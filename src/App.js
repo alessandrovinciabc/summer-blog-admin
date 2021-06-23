@@ -18,6 +18,7 @@ function App() {
   let [posts, setPosts] = useState([]);
   let [loading, setLoading] = useState(true);
 
+  let [checkedAuth, setCheckedAuth] = useState(false);
   let [auth, setAuth] = useState(null);
 
   useEffect(() => {
@@ -36,44 +37,49 @@ function App() {
     testAuth(jwtFromStorage)
       .then((res) => {
         setAuth(jwtFromStorage);
+        setCheckedAuth(true);
       })
       .catch((err) => {});
   }, []);
 
   return (
-    <HashRouter>
-      <Header className="bg-header" auth={auth} />
-      <Switch>
-        <Route path="/login" exact>
-          {auth && <Redirect to="/" />}
-          <LoginView setAuth={setAuth} loading={loading} />
-        </Route>
-        <Route
-          path="/logout"
-          exact
-          render={() => {
-            jwt.remove();
-            setAuth(null);
+    <>
+      {checkedAuth && (
+        <HashRouter>
+          <Header className="bg-header" auth={auth} />
+          <Switch>
+            <Route path="/login" exact>
+              {auth && <Redirect to="/" />}
+              <LoginView setAuth={setAuth} loading={loading} />
+            </Route>
+            <Route
+              path="/logout"
+              exact
+              render={() => {
+                jwt.remove();
+                setAuth(null);
 
-            return <Redirect to="/" />;
-          }}
-        />
-        {auth == null && <Redirect to="/login" />}
+                return <Redirect to="/" />;
+              }}
+            />
+            {auth == null && <Redirect to="/login" />}
 
-        <Route path="/" exact>
-          <Redirect to="/home" />
-        </Route>
-        <Route path="/home" exact>
-          <HomeView posts={posts} loading={loading} />
-        </Route>
-        <Route path="/post/:id" exact>
-          <PostView posts={posts} loading={loading} />
-        </Route>
-        <Route path="/create" exact>
-          <CreateView loading={loading} />
-        </Route>
-      </Switch>
-    </HashRouter>
+            <Route path="/" exact>
+              <Redirect to="/home" />
+            </Route>
+            <Route path="/home" exact>
+              <HomeView posts={posts} loading={loading} />
+            </Route>
+            <Route path="/post/:id" exact>
+              <PostView posts={posts} loading={loading} />
+            </Route>
+            <Route path="/create" exact>
+              <CreateView loading={loading} />
+            </Route>
+          </Switch>
+        </HashRouter>
+      )}
+    </>
   );
 }
 
