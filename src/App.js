@@ -11,6 +11,9 @@ import AboutView from './pages/AboutView';
 
 import LoginView from './pages/LoginView';
 
+import jwt from './util/jwt';
+import { testAuth } from './util/apiOperations';
+
 function App() {
   let [posts, setPosts] = useState([]);
   let [loading, setLoading] = useState(true);
@@ -25,6 +28,16 @@ function App() {
       .finally(() => {
         setLoading(false);
       });
+
+    let jwtFromStorage = jwt.get();
+
+    if (jwtFromStorage == null) return;
+
+    testAuth(jwtFromStorage)
+      .then((res) => {
+        setAuth(jwtFromStorage);
+      })
+      .catch((err) => {});
   }, []);
 
   return (
@@ -32,7 +45,8 @@ function App() {
       <Header className="bg-header" />
       <Switch>
         <Route path="/login" exact>
-          <LoginView />
+          {auth && <Redirect to="/" />}
+          <LoginView setAuth={setAuth} loading={loading} />
         </Route>
         {auth == null && <Redirect to="/login" />}
 

@@ -5,6 +5,11 @@ const apiBase =
     ? 'http://localhost:3000/blog/post'
     : 'https://summer-blog-api.herokuapp.com/blog/post';
 
+const apiAuth =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3000/auth'
+    : 'https://summer-blog-api.herokuapp.com/auth';
+
 async function getPosts() {
   return await axios.get(apiBase);
 }
@@ -17,4 +22,16 @@ async function postComment(postid, data) {
   return await axios.post(`${apiBase}/${postid}/comment`, data);
 }
 
-export { getPosts, getComments, postComment };
+/******************** Auth *********************/
+async function login(username, password) {
+  return await axios.post(`${apiAuth}/login`, { username, password });
+}
+
+async function testAuth(jwt) {
+  return await axios.post(
+    `${apiAuth}/test`,
+    {},
+    { headers: { Authorization: `Bearer ${jwt}` } }
+  );
+}
+export { getPosts, getComments, postComment, login, testAuth };
