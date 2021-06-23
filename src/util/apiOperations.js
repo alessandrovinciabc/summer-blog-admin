@@ -28,6 +28,12 @@ async function postComment(postid, data) {
   return await axios.post(`${apiBase}/${postid}/comment`, data);
 }
 
+async function deleteComment(postid, commentid, jwt) {
+  return await axios.delete(`${apiBase}/${postid}/comment/${commentid}`, {
+    headers: { Authorization: `Bearer ${jwt}` },
+  });
+}
+
 /******************** Auth *********************/
 async function login(username, password) {
   return await axios.post(`${apiAuth}/login`, { username, password });
@@ -40,4 +46,12 @@ async function testAuth(jwt) {
     { headers: { Authorization: `Bearer ${jwt}` } }
   );
 }
-export { getPosts, deletePost, getComments, postComment, login, testAuth };
+export {
+  getPosts,
+  deletePost,
+  getComments,
+  postComment,
+  deleteComment,
+  login,
+  testAuth,
+};

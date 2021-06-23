@@ -3,18 +3,17 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Loader from '../components/Loader';
-import CommentForm from '../components/CommentForm';
 
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 
-import { getComments } from '../util/apiOperations';
+import { getComments, deleteComment } from '../util/apiOperations';
+import jwt from '../util/jwt';
 
 function PostView(props) {
   let { id } = useParams();
   let [comments, setComments] = useState([]);
-  let [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     if (id == null) return;
@@ -46,30 +45,34 @@ function PostView(props) {
             <header>
               <h2>Comments</h2>
             </header>
-            <Button
-              onClick={() => {
-                setShowForm(!showForm);
-              }}
-              className="new-comment-btn my-3"
-            >
-              New Comment
-            </Button>
-            {showForm && <CommentForm id={id} />}
             <div>
               {comments.length > 0 &&
                 comments.map((comment) => {
                   return (
                     <Card
                       key={comment._id}
-                      className="post-summary my-3 w-100 position-relative"
+                      className="post-summary my-3 w-100 pr-5"
                     >
-                      <Card.Body className="pb-4">
+                      <Card.Body className="pb-4 position-relative">
                         <Card.Title>{comment.owner}</Card.Title>
                         {comment.text}
                         <div className="text-muted position-absolute comment-time">
                           {new Date(comment.createdAt).toLocaleDateString()}
                         </div>
                       </Card.Body>
+                      <Button
+                        onClick={() => {
+                          deleteComment(id, comment._id, jwt.get())
+                            .then(() => {
+                              window.location.reload();
+                            })
+                            .catch(() => {});
+                        }}
+                        className="delete-btn rounded-right-only"
+                        variant="danger"
+                      >
+                        X
+                      </Button>
                     </Card>
                   );
                 })}
