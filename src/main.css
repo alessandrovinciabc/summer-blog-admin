@@ -1,0 +1,104 @@
+:root {
+  --main: rgb(99, 250, 255);
+  --main-opaque: rgba(99, 250, 255, 0.9);
+  --secondary: rgb(253, 145, 98);
+  --action: rgb(253, 87, 64);
+}
+
+.bg-main {
+  background-color: var(--main);
+}
+
+.bg-secondary {
+  background-color: var(--secondary);
+}
+
+.bg-header {
+  background: linear-gradient(var(--main-opaque), var(--main-opaque)),
+    url(assets/bg.jpg) no-repeat 20%;
+}
+
+.comment-time {
+  right: 1.25rem !important;
+  bottom: 2px !important;
+}
+
+.main-navigation > .nav-link {
+  color: black !important;
+  font-size: 1.4rem;
+}
+
+.main-navigation > .nav-link:hover {
+  opacity: 0.7;
+}
+
+.main-navigation {
+  height: 100%;
+
+  background-color: var(--main);
+  border-radius: 5px;
+}
+
+.posts-container {
+  width: 100%;
+}
+
+.post-summary,
+.post-link {
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Injected HTML styles */
+.post {
+  width: 100%;
+  max-width: 633px;
+
+  line-height: 1.4;
+}
+
+.post-content > * {
+  margin: 2rem 0;
+}
+
+.post iframe {
+  width: 100%;
+  max-width: 580px;
+
+  display: block;
+  margin: 0 auto;
+}
+
+.post figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Comment section */
+
+.new-comment-btn {
+  background-color: var(--action) !important;
+
+  border-color: var(--secondary) !important;
+}
+
+.new-comment-btn:hover {
+  background-color: var(--secondary) !important;
+  border-color: var(--secondary) !important;
+}
+
+.new-comment-btn:focus {
+  background-color: var(--action) !important;
+  box-shadow: 0 0 2px 4px var(--main);
+}
+
+.new-comment-btn:active {
+  background-color: var(--action) !important;
+  box-shadow: 0 0 2px 4px var(--main) !important;
+}
+
+.new-comment-textarea {
+  height: 100px !important;
+  resize: none;
+}
