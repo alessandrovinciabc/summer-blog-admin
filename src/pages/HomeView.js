@@ -9,7 +9,7 @@ function HomeView(props) {
   let { posts, loading } = props;
   return (
     <Container fluid>
-      <h1 className="text-center mt-3">Home</h1>
+      <h1 className="text-center mt-3">Posts</h1>
       <div className="posts-container d-flex flex-column align-items-center">
         {loading && (
           <>

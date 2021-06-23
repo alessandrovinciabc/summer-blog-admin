@@ -14,10 +14,10 @@ function Header(props) {
       <Navbar.Collapse id="header-navbar">
         <Nav className="ml-auto main-navigation">
           <Nav.Link className="px-3" href="#/home">
-            Home
+            Posts
           </Nav.Link>
-          <Nav.Link className="px-3" href="#/about">
-            About
+          <Nav.Link className="px-3" href="#/create">
+            Create new post
           </Nav.Link>
           {auth ? (
             <Nav.Link className="px-3 bg-danger rounded" href="#/logout">
