@@ -32,7 +32,7 @@ function App() {
 
     let jwtFromStorage = jwt.get();
 
-    if (jwtFromStorage == null) return;
+    if (jwtFromStorage == null) return setCheckedAuth(true);
 
     testAuth(jwtFromStorage)
       .then((res) => {
