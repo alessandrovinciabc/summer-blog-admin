@@ -46,36 +46,37 @@ function PostView(props) {
               <h2>Comments</h2>
             </header>
             <div>
-              {comments.length > 0 &&
-                comments.map((comment) => {
-                  return (
-                    <Card
-                      key={comment._id}
-                      className="post-summary my-3 w-100 pr-5"
-                    >
-                      <Card.Body className="pb-4 position-relative">
-                        <Card.Title>{comment.owner}</Card.Title>
-                        {comment.text}
-                        <div className="text-muted position-absolute comment-time">
-                          {new Date(comment.createdAt).toLocaleDateString()}
-                        </div>
-                      </Card.Body>
-                      <Button
-                        onClick={() => {
-                          deleteComment(id, comment._id, jwt.get())
-                            .then(() => {
-                              window.location.reload();
-                            })
-                            .catch(() => {});
-                        }}
-                        className="delete-btn rounded-right-only"
-                        variant="danger"
+              {comments.length > 0
+                ? comments.map((comment) => {
+                    return (
+                      <Card
+                        key={comment._id}
+                        className="post-summary my-3 w-100 pr-5"
                       >
-                        X
-                      </Button>
-                    </Card>
-                  );
-                })}
+                        <Card.Body className="pb-4 position-relative">
+                          <Card.Title>{comment.owner}</Card.Title>
+                          {comment.text}
+                          <div className="text-muted position-absolute comment-time">
+                            {new Date(comment.createdAt).toLocaleDateString()}
+                          </div>
+                        </Card.Body>
+                        <Button
+                          onClick={() => {
+                            deleteComment(id, comment._id, jwt.get())
+                              .then(() => {
+                                window.location.reload();
+                              })
+                              .catch(() => {});
+                          }}
+                          className="delete-btn rounded-right-only"
+                          variant="danger"
+                        >
+                          X
+                        </Button>
+                      </Card>
+                    );
+                  })
+                : 'Nothing here yet'}
             </div>
           </section>
         </div>
