@@ -39,7 +39,7 @@ const Editor = React.forwardRef((props, ref) => {
     });
 
     editor.current = editorjs;
-  }, []);
+  }, [props.data]);
 
   useEffect(() => {
     ref.current = editor.current;

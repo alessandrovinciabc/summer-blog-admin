@@ -22,13 +22,12 @@ function PostList(props) {
         posts.length > 0 &&
         posts.map((post) => {
           return (
-            <div className="w-100 d-flex justify-content-center align-items-center">
+            <div
+              key={post._id}
+              className="w-100 d-flex justify-content-center align-items-center"
+            >
               <Card className="post-summary my-3 mx-auto pr-5">
-                <a
-                  key={post._id}
-                  className="text-reset post-link"
-                  href={`#/post/${post._id}`}
-                >
+                <a className="text-reset post-link" href={`#/post/${post._id}`}>
                   <Card.Body>
                     <Card.Title>{post.title}</Card.Title>
                     <Card.Subtitle className="text-muted">
