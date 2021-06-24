@@ -37,9 +37,13 @@ function App() {
     testAuth(jwtFromStorage)
       .then((res) => {
         setAuth(jwtFromStorage);
-        setCheckedAuth(true);
       })
-      .catch((err) => {});
+      .catch((err) => {
+        jwt.remove();
+      })
+      .finally(() => {
+        setCheckedAuth(true);
+      });
   }, []);
 
   return (
