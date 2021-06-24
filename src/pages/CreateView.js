@@ -7,6 +7,9 @@ import Form from 'react-bootstrap/Form';
 import Loader from '../components/Loader';
 import Editor from '../components/Editor/Editor';
 
+import { postPost } from '../util/apiOperations';
+import jwt from '../util/jwt';
+
 function CreateView(props) {
   let [titleInput, setTitleInput] = useState('');
 
@@ -20,12 +23,13 @@ function CreateView(props) {
     let data;
     try {
       data = await editorRef.current.save();
+      await postPost(titleInput, JSON.stringify(data), jwt.get());
+
+      window.location.hash = '#/';
+      window.location.reload();
     } catch (err) {
       alert('An error occurred');
     }
-
-    /* TODO: save data to DB */
-    console.log(data);
 
     setIsSaving(false);
   }

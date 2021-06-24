@@ -10,13 +10,27 @@ import Button from 'react-bootstrap/Button';
 
 import { getComments, deleteComment } from '../util/apiOperations';
 import jwt from '../util/jwt';
+import convertToHTML from '../util/converter';
+import sanitizer from '../util/sanitizer';
 
 function PostView(props) {
   let { id } = useParams();
   let [comments, setComments] = useState([]);
+  let [post, setPost] = useState(null);
+  let [converted, setConverted] = useState('');
+
+  let { posts, loading } = props;
 
   useEffect(() => {
     if (id == null) return;
+    if (posts.length === 0) return;
+
+    let matchingPost = posts.find((post) => post._id === id);
+    setPost(matchingPost);
+
+    let parsedJSON = JSON.parse(matchingPost.json);
+    setConverted(sanitizer(convertToHTML(parsedJSON.blocks)));
+
     getComments(id)
       .then((newComments) => {
         setComments(newComments.data);
@@ -24,22 +38,21 @@ function PostView(props) {
       .catch((err) => {
         if (err.response.status === 404) return;
       });
-  }, [id]);
-
-  let { posts, loading } = props;
-  let requestedPost = posts.find((post) => post._id === id);
+  }, [id, posts]);
 
   return (
     <Container className="d-flex justify-content-center" fluid>
-      {requestedPost ? (
+      {post ? (
         <div className="post mt-4">
-          <h1>{requestedPost.title}</h1>
+          <h1>{post.title}</h1>
           <p className="text-muted">
-            {new Date(requestedPost.createdAt).toLocaleDateString()}
+            {new Date(post.createdAt).toLocaleDateString()}
           </p>
           <div
             className="post-content"
-            dangerouslySetInnerHTML={{ __html: requestedPost.html }}
+            dangerouslySetInnerHTML={{
+              __html: converted,
+            }}
           ></div>
           <section className="comments my-5 pt-3 border-top">
             <header>

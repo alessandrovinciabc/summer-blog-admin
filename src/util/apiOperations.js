@@ -14,6 +14,14 @@ async function getPosts() {
   return await axios.get(apiBase);
 }
 
+async function postPost(title, json, jwt) {
+  return await axios.post(
+    apiBase,
+    { title, json },
+    { headers: { Authorization: `Bearer ${jwt}` } }
+  );
+}
+
 async function deletePost(postid, jwt) {
   return await axios.delete(`${apiBase}/${postid}`, {
     headers: { Authorization: `Bearer ${jwt}` },
@@ -48,6 +56,7 @@ async function testAuth(jwt) {
 }
 export {
   getPosts,
+  postPost,
   deletePost,
   getComments,
   postComment,
