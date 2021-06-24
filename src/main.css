@@ -119,3 +119,10 @@
   height: 100px !important;
   resize: none;
 }
+
+/* CreateView */
+
+.title-input {
+  width: 100%;
+  max-width: 600px;
+}
