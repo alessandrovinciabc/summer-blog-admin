@@ -8,6 +8,7 @@ import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 import PostView from './pages/PostView';
 import HomeView from './pages/HomeView';
 import CreateView from './pages/CreateView';
+import EditView from './pages/EditView';
 
 import LoginView from './pages/LoginView';
 
@@ -76,6 +77,9 @@ function App() {
             </Route>
             <Route path="/post/:id" exact>
               <PostView posts={posts} loading={loading} />
+            </Route>
+            <Route path="/post/:id/edit" exact>
+              <EditView posts={posts} loading={loading} />
             </Route>
             <Route path="/create" exact>
               <CreateView loading={loading} />

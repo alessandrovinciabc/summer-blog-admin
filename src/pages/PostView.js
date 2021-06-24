@@ -44,6 +44,13 @@ function PostView(props) {
     <Container className="d-flex justify-content-center" fluid>
       {post ? (
         <div className="post mt-4">
+          <Button
+            onClick={() => {
+              window.location.hash = `#/post/${id}/edit`;
+            }}
+          >
+            Edit🖊
+          </Button>
           <h1>{post.title}</h1>
           <p className="text-muted">
             {new Date(post.createdAt).toLocaleDateString()}
