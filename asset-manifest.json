@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/summer-blog-admin/static/css/main.28a3ffb8.chunk.css",
+    "main.js": "/summer-blog-admin/static/js/main.f2b4a876.chunk.js",
+    "main.js.map": "/summer-blog-admin/static/js/main.f2b4a876.chunk.js.map",
+    "runtime-main.js": "/summer-blog-admin/static/js/runtime-main.dd22f3c2.js",
+    "runtime-main.js.map": "/summer-blog-admin/static/js/runtime-main.dd22f3c2.js.map",
+    "static/css/2.4c97ca4f.chunk.css": "/summer-blog-admin/static/css/2.4c97ca4f.chunk.css",
+    "static/js/2.63bf8930.chunk.js": "/summer-blog-admin/static/js/2.63bf8930.chunk.js",
+    "static/js/2.63bf8930.chunk.js.map": "/summer-blog-admin/static/js/2.63bf8930.chunk.js.map",
+    "index.html": "/summer-blog-admin/index.html",
+    "static/css/2.4c97ca4f.chunk.css.map": "/summer-blog-admin/static/css/2.4c97ca4f.chunk.css.map",
+    "static/css/main.28a3ffb8.chunk.css.map": "/summer-blog-admin/static/css/main.28a3ffb8.chunk.css.map",
+    "static/js/2.63bf8930.chunk.js.LICENSE.txt": "/summer-blog-admin/static/js/2.63bf8930.chunk.js.LICENSE.txt",
+    "static/media/main.css": "/summer-blog-admin/static/media/bg.23d59e96.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.dd22f3c2.js",
+    "static/css/2.4c97ca4f.chunk.css",
+    "static/js/2.63bf8930.chunk.js",
+    "static/css/main.28a3ffb8.chunk.css",
+    "static/js/main.f2b4a876.chunk.js"
+  ]
+}
