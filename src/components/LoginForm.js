@@ -26,7 +26,6 @@ function LoginForm(props) {
         window.location.hash = '#/';
       })
       .catch((err) => {
-        console.log(err);
         if (err.response.status === 401) return setFailed(true);
       });
   }

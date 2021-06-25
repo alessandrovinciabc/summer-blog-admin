@@ -26,6 +26,7 @@ function PostView(props) {
     if (posts.length === 0) return;
 
     let matchingPost = posts.find((post) => post._id === id);
+    if (matchingPost == null) return (window.location.hash = '#/');
     setPost(matchingPost);
 
     let parsedJSON = JSON.parse(matchingPost.json);
