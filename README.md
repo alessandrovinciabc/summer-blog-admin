@@ -1,9 +1,5 @@
 # Summer Blog Admin
 
-## Summary
+This is an administration frontend for the [blog-api](https://github.com/alessandrovinciabc/blog-api) project I did.
 
-This is an administration frontend for the [blog-api](https://github.com/alessandrovinciabc/blog-api) project I did. Built with React.
-
-## How to run
-
-### `npm start`
+More details and a live version can be found here: [Summer Blog](https://github.com/alessandrovinciabc/summer-blog)
