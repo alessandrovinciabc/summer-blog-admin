@@ -28,6 +28,12 @@ async function deletePost(postid, jwt) {
   });
 }
 
+async function putPost(postid, updateObj, jwt) {
+  return await axios.put(`${apiBase}/${postid}`, updateObj, {
+    headers: { Authorization: `Bearer ${jwt}` },
+  });
+}
+
 async function getComments(postid) {
   return await axios.get(`${apiBase}/${postid}/comment`);
 }
@@ -58,6 +64,7 @@ export {
   getPosts,
   postPost,
   deletePost,
+  putPost,
   getComments,
   postComment,
   deleteComment,

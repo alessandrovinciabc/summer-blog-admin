@@ -126,3 +126,9 @@
   width: 100%;
   max-width: 600px;
 }
+
+/* EditView */
+
+.edit-title-input {
+  font-size: 2rem;
+}
